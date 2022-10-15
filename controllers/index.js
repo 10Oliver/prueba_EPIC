@@ -1,11 +1,22 @@
-///Se obtiene el componente
-const contenedor = document.getElementById('contenedor');
+//Se importan los componentes
+import Vue from 'vue'
+import eleccion from 'components/eleccion.vue'
 
 //Se crea el método que cargará los datos iniciales del juego
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
+    
+    //Se instancia Vue
+    const vm = new Vue({
+        el: "#contenedor",
+        data: {
+            mensaje: 'Hola mundo'
+        },
+        components: {
+            eleccion,
+        }
+    });
     //Se le brinda la opción al usuario para cargar las opciones
-    eleccion();
-
+    //eleccion();
 });
 
 //Función para crear el modo de elección de palabra
@@ -22,27 +33,25 @@ function eleccion() {
 
 //Se crea la función para guardar la palabra
 function elegirPalabra() {
-
     //Se obtiene el componente
-    const input = document.getElementById('palabraAd');
+    const input = document.getElementById("palabraAd");
     //Se pasa el texto a un arreglo
-    const palabra = input.value.split('');
+    const palabra = input.value.split("");
     //Se guarda la palabra de manera local
-    localStorage.setItem('palabra', palabra);
-    //Se inicia el juego 
+    localStorage.setItem("palabra", palabra);
+    //Se inicia el juego
     cambioModo();
-
 }
 
 //Función para generar las opciones disponibles
 function generarTeclado() {
     //contenedor de opciones
-    let contenido = '';
-    const letras = 'abcdefghijklmnñopqrstuvwxyz';
+    let contenido = "";
+    const letras = "abcdefghijklmnñopqrstuvwxyz";
     //Se pasa a arreglo
-    const total = letras.split('');
+    const total = letras.split("");
     //Se recorre para generar las opciones disponibles
-    total.forEach(letra => {
+    total.forEach((letra) => {
         contenido += `
         <a class="btn" id="${letra}" onclick="verificar('${letra}')">${letra}</a>
         `;
@@ -54,7 +63,7 @@ function generarTeclado() {
 //Función para pasar de modo elección a adivinador
 function cambioModo() {
     //Se obtiene la palabra elegida
-    const palabra = localStorage.getItem('palabra');
+    const palabra = localStorage.getItem("palabra");
     //Se carga el nuevo contenido
     contenedor.innerHTML = `
     <div class="col l12 m12 s12">
@@ -75,16 +84,16 @@ function cambioModo() {
             </div>
     `;
     //Se crean las oportunidades
-    localStorage.setItem('intentos', 0);
+    localStorage.setItem("intentos", 0);
 }
 
 //Función para generar letras a base de palabras
 function generador(palabra) {
     //Se recrea el arreglo
-    let secreto = palabra.trim().split(',');
+    let secreto = palabra.trim().split(",");
     //Se crea el HTMl que se insertará
-    let contenido = '';
-    secreto.forEach(letra => {
+    let contenido = "";
+    secreto.forEach((letra) => {
         contenido += `
         <div class="input-field col l1 m1 s1">
             <input value="${letra}" id="${secreto.indexOf(letra)}" type="password" class="validate">
@@ -99,38 +108,34 @@ function verificar(letra) {
     //Se define variable donde se guardará la posición de la letra encontrada
     let posicion = [];
     //Se revisa dentro de la palabra la letra seleccionada
-    const secreto = localStorage.getItem('palabra').trim().split(',');
+    const secreto = localStorage.getItem("palabra").trim().split(",");
     //Se revisa  dentro del arreglo
-    secreto.forEach(letraSecreto => {
-        console.log(letraSecreto + ' = ' + letra);
+    secreto.forEach((letraSecreto) => {
+        console.log(letraSecreto + " = " + letra);
         if (letraSecreto == letra) {
             //Se obtiene la posición de la letra
             let lugar = secreto.indexOf(letraSecreto);
             if (lugar != -1) {
                 posicion.push(lugar);
             }
-
         }
     });
     //Se verifica la longitud
     if (posicion.length == 0) {
         //Se resta un intento
-        let intentoActual = Number(localStorage.getItem('intentos')+1);
-        localStorage.setItem('intentos', intentoActual);
+        let intentoActual = Number(localStorage.getItem("intentos") + 1);
+        localStorage.setItem("intentos", intentoActual);
         //Se verifica si se llegaron a 0 intentos
         if (intentoActual == 0) {
-            alert('Has perdido, la palabra correcta era: '+localStorage.getItem('palabra'));
+            alert("Has perdido, la palabra correcta era: " + localStorage.getItem("palabra"));
         }
         //Se cambia la imagen
-        document.getElementById('imagen_oportunidad').src = '../resources/image/fase'+intentoActual+'.png';
+        document.getElementById("imagen_oportunidad").src = "../resources/image/fase" + intentoActual + ".png";
     } else {
         //Se quita el tipo de input en los valores encontrados si es que he encuentra alguno
-        posicion.forEach(numero => {
+        posicion.forEach((numero) => {
             //Se obtiene el componente que se le cambiará el tipo
-            document.getElementById(numero).type = 'text';
-        })
+            document.getElementById(numero).type = "text";
+        });
     }
-
-
-
 }
