@@ -1,0 +1,21 @@
+.contendor_palabra{
+    margin-top: 20px;
+    width: 100% !important;
+    display:  flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.imagen {
+    display:  flex;
+    justify-content: center;
+}
+
+.teclado {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80% !important;
+}
