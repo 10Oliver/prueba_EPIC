@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 export default {
     name: "SeleccionPalabra",
@@ -25,24 +25,40 @@ export default {
         return {
             visible: false,
             cambio: false,
-            palabra: null
+            palabra: null,
         };
     },
     methods: {
-        async setData() { 
-            if (this.palabra == null) {
+        async setData() {
+            if (this.palabra == "") {
                 Swal.fire({
-                    title: 'Error en palabra',
-                    icon: 'warning',
-                    text: 'No se permiten campos vacíos'
-                })
-            } else { 
-                //Se revisa si se ha escogido una palabra
-                //La palabra se pasa a minusculas
-                this.palabra = this.palabra.toLowerCase();
-                this.$emit("retornar", this.palabra);
+                    title: "Error en palabra",
+                    icon: "warning",
+                    text: "No se permiten campos vacíos",
+                });
+            } else {
+                if (this.palabra == null) {
+                    const options = {
+                        method: "GET",
+                        headers: {
+                            "X-RapidAPI-Key": "34e918967bmshd7edbd958454188p1ca3e0jsn6e169ad264eb",
+                            "X-RapidAPI-Host": "random-words-with-pronunciation.p.rapidapi.com",
+                        },
+                    };
+
+                    let busqueda = "";
+                    fetch("https://random-words-with-pronunciation.p.rapidapi.com/word/dutch", options)
+                        .then((request) => request.json())
+                        .then((response) => {
+                            busqueda = response[0].word.toLowerCase();
+                            console.log(busqueda);
+                            this.$emit("retornar", busqueda);
+                        }).catch((err) => console.error(err))
+                } else {
+                    this.palabra = this.palabra.toLowerCase();
+                            this.$emit("retornar", this.palabra);
+                }
             }
-            
         },
     },
 };
