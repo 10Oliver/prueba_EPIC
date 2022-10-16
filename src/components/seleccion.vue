@@ -37,7 +37,9 @@ export default {
                     text: 'No se permiten campos vacíos'
                 })
             } else { 
-                this.$emit("retornar", false);
+                //La palabra se pasa a minusculas
+                this.palabra = this.palabra.toLowerCase();
+                this.$emit("retornar", this.palabra);
             }
             
         },

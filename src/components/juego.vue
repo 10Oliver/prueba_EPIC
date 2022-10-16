@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="ContenedorPersonaje">
         <div class="personaje"></div>
     </div>
 </template>
@@ -11,6 +11,10 @@ export default {
 </script>
 
 <style scoped>
+.ContenedorPersonaje {
+    display: flex;
+    justify-content: center;
+}
     .personaje {
         width: 500px;
         height: 200px;
