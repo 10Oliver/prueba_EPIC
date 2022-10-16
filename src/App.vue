@@ -44,9 +44,10 @@ export default {
         PalabraEscondida,
     },
     methods: {
+        //Se obtiene la palabra
         getData(PalabraR) {
-            let PalabraSecreta = PalabraR.split(""),
-                Arreglo = [];
+            //Se divide para crear un arrelo
+            let PalabraSecreta = PalabraR.split(""), Arreglo = [];
             //Se crea un arreglo con la longitud de la palabra
             for (let index = 0; index < PalabraR.split("").length; index++) {
                 Arreglo.push("*");
@@ -75,6 +76,7 @@ export default {
         },
     },
     mounted() {
+        //Se cargan las líneas del fondo
         this.ArregloLineas.forEach((Element) => {
             anime({
                 targets: ".Linea" + Element,

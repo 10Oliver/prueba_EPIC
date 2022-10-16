@@ -77,6 +77,7 @@ export default {
                 //Se manda que se ha equivocado al padre
                 this.$emit("fallar");
             }
+            //Se fuerza a actualizar los datos para que se muestren los campos
             this.$forceUpdate();
         },
     },

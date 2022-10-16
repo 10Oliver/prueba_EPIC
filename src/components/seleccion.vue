@@ -1,8 +1,10 @@
 <template>
     <div id="seleccion">
         <h3>Elige la opción para adivinar la palabra</h3>
-        <span >Para empezar a jugar, debes de definir la palabra que tratarás de encontrar, para ello decide la opción que
-            más prefieras</span>
+        <span
+            >Para empezar a jugar, debes de definir la palabra que tratarás de encontrar, para ello decide la opción que
+            más prefieras</span
+        >
         <div class="opciones">
             <button v-on:click="Visible = !Visible">Escribir la palabra</button>
             <button v-on:click="setData">¡Qué el destino decida!</button>
@@ -28,6 +30,8 @@ export default {
     },
     methods: {
         async setData() {
+            let valores = /^[0-9]/;
+            //Se revisa que si se tomará del input que no esté vacío
             if (this.Palabra == "") {
                 Swal.fire({
                     title: "Error en palabra",
@@ -35,7 +39,9 @@ export default {
                     text: "No se permiten campos vacíos",
                 });
             } else {
+                //Si se escogió el aletorio se verifica que sea así
                 if (this.Palabra == null) {
+                    //Opciones para la petición
                     const options = {
                         method: "GET",
                         headers: {
@@ -43,17 +49,35 @@ export default {
                             "X-RapidAPI-Host": "random-words-with-pronunciation.p.rapidapi.com",
                         },
                     };
-
+                    //Se realiza la petición para obtener la palabra en inglés
                     let Busqueda = "";
                     fetch("https://random-words-with-pronunciation.p.rapidapi.com/word/dutch", options)
                         .then((request) => request.json())
                         .then((response) => {
+                            //Se obtiene la palabra
                             Busqueda = response[0].word.toLowerCase();
+                            //Se envía para evaluarla
                             this.$emit("retornar", Busqueda);
-                        }).catch((err) => console.error(err))
+                        })
+                        .catch((err) => console.error(err));
                 } else {
-                    this.Palabra = this.Palabra.toLowerCase();
-                            this.$emit("retornar", this.Palabra);
+                    if (this.Palabra.length < 2) {
+                        Swal.fire({
+                            title: "Error en palabra",
+                            icon: "warning",
+                            text: "La palabra debe de tener al menos dos letras",
+                        });
+                    } else if (this.Palabra.match(valores)) {
+                         Swal.fire({
+                            title: "Error en palabra",
+                            icon: "warning",
+                            text: "La palabra no debe de contener números",
+                        });
+                    } else { 
+                        //Si no está vacío, no es nulo y tiene más de una letra se guarda y se envía
+                        this.Palabra = this.Palabra.toLowerCase();
+                        this.$emit("retornar", this.Palabra);
+                    }
                 }
             }
         },
@@ -85,7 +109,7 @@ h3 {
     margin: 10px;
 }
 
-span {    
+span {
     font-size: 18pt;
     margin: 5px 0px;
 }

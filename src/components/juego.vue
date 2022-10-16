@@ -32,6 +32,7 @@ export default {
         };
     },
     methods: {
+        //Se cambia el dibujo
         fallido() {
             this.Errores++;
             let Objeto = this.Propiedades['pieza' + this.Errores];
@@ -46,13 +47,14 @@ export default {
         },
     },
     mounted() {
+        //Se cargan las piezas del personaje a su estado inical
         anime({
             targets: ".personaje",
             translateX: 315,
             translateY: -280,
             delay: 1000
         });
-
+        //Se carga la primera pieza del personaje
         anime({
             targets: ".pieza" + this.Errores,
             borderRadius: ["0%", "50%"],
@@ -65,6 +67,7 @@ export default {
             opacity: 1,
             delay: 1000
         });
+        //Se carga el mastil
         anime({
             targets: ".base1",
             width: 250,

@@ -17,19 +17,22 @@ export default {
             Visible: false,
         }
     }, methods: {
+        //Se desactiva el botón
         async revisar(Eleccion) { 
             this.$emit("evaluar", Eleccion);
             document.getElementById(Eleccion).disabled = true;
             document.getElementById(Eleccion).style = 'background-color: #d0d0d0; color: #000;';
         },
+        //Se apagan todos los botones
         apagar() { 
             const componentes = document.querySelectorAll('.botonTeclado');
             componentes.forEach(Element => {
                 Element.style = 'background-color: #d0d0d0; color: #000;';
                 Element.disabled = true;
             });
-            this.Visible = true;
+            this.Visible = true; //Se muestra el botón de reiniciar
         },
+        //Recarga la página
         recargar: function () { 
             location.reload();
         }
