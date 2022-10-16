@@ -1,6 +1,6 @@
 <template>
-    <div class="ContenedorPersonaje">
-        <div class="Cpersonaje">
+    <div class="contenedorPersonaje">
+        <div class="cPersonaje">
             <div class="linea base1"></div>
             <div class="linea base2"></div>
             <div class="linea base3"></div>
@@ -21,8 +21,8 @@ export default {
     name: "JuegoAhorcado",
     data() {
         return {
-            errores: 0,
-            propiedades: {
+            Errores: 0,
+            Propiedades: {
                 'pieza1': [120, -80,315, 0],
                 'pieza2': [80, -110, 285, 45],
                 'pieza3': [80, -110, 345, -45],
@@ -33,14 +33,14 @@ export default {
     },
     methods: {
         fallido() {
-            this.errores++;
-            let objeto = this.propiedades['pieza' + this.errores];
+            this.Errores++;
+            let Objeto = this.Propiedades['pieza' + this.Errores];
             anime({
-                targets: ".pieza" + this.errores,
-                height: objeto[0],
-                translateY: objeto[1],
-                translateX: objeto[2],
-                rotate: objeto[3],
+                targets: ".pieza" + this.Errores,
+                height: Objeto[0],
+                translateY: Objeto[1],
+                translateX: Objeto[2],
+                rotate: Objeto[3],
                 opacity: 1
             });
         },
@@ -54,7 +54,7 @@ export default {
         });
 
         anime({
-            targets: ".pieza" + this.errores,
+            targets: ".pieza" + this.Errores,
             borderRadius: ["0%", "50%"],
             width: 80,
             height: 80,
@@ -99,7 +99,7 @@ export default {
 </script>
 
 <style scoped>
-.ContenedorPersonaje {
+.contenedorPersonaje {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -109,7 +109,7 @@ export default {
     margin-left: 20%;
 }
 
-.Cpersonaje {
+.cPersonaje {
     margin-top: 350px;
     width: 500px;
     height: 320px;

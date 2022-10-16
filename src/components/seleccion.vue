@@ -4,11 +4,11 @@
         <span >Para empezar a jugar, debes de definir la palabra que tratarás de encontrar, para ello decide la opción que
             más prefieras</span>
         <div class="opciones">
-            <button v-on:click="visible = !visible">Escribir la palabra</button>
+            <button v-on:click="Visible = !Visible">Escribir la palabra</button>
             <button v-on:click="setData">¡Qué el destino decida!</button>
         </div>
-        <div class="contenedorTeclado" v-if="visible">
-            <input type="text" v-model="palabra" />
+        <div class="contenedorTeclado" v-if="Visible">
+            <input type="text" v-model="Palabra" />
             <button v-on:click="setData">¡Empezar!</button>
         </div>
     </div>
@@ -21,21 +21,21 @@ export default {
     name: "SeleccionPalabra",
     data() {
         return {
-            visible: false,
-            cambio: false,
-            palabra: null,
+            Visible: false,
+            Cambio: false,
+            Palabra: null,
         };
     },
     methods: {
         async setData() {
-            if (this.palabra == "") {
+            if (this.Palabra == "") {
                 Swal.fire({
                     title: "Error en palabra",
                     icon: "warning",
                     text: "No se permiten campos vacíos",
                 });
             } else {
-                if (this.palabra == null) {
+                if (this.Palabra == null) {
                     const options = {
                         method: "GET",
                         headers: {
@@ -44,17 +44,16 @@ export default {
                         },
                     };
 
-                    let busqueda = "";
+                    let Busqueda = "";
                     fetch("https://random-words-with-pronunciation.p.rapidapi.com/word/dutch", options)
                         .then((request) => request.json())
                         .then((response) => {
-                            busqueda = response[0].word.toLowerCase();
-                            console.log(busqueda);
-                            this.$emit("retornar", busqueda);
+                            Busqueda = response[0].word.toLowerCase();
+                            this.$emit("retornar", Busqueda);
                         }).catch((err) => console.error(err))
                 } else {
-                    this.palabra = this.palabra.toLowerCase();
-                            this.$emit("retornar", this.palabra);
+                    this.Palabra = this.Palabra.toLowerCase();
+                            this.$emit("retornar", this.Palabra);
                 }
             }
         },

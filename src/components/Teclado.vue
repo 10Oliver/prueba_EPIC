@@ -1,7 +1,7 @@
 <template>
     <div class="contenedor" on-load>
-        <button class="boton_teclado" v-for="letra in letras" :key="letra.id" :id="letra" v-on:click="revisar(letra)">{{letra}}</button>
-        <div class="contenedor_reiniciar" v-if="visible">
+        <button class="botonTeclado" v-for="Letra in Letras" :key="Letra.id" :id="Letra" v-on:click="revisar(Letra)">{{Letra}}</button>
+        <div class="contenedorReiniciar" v-if="Visible">
             <button class="reiniciar" v-on:click="recargar">Reiniciar partida</button>
         </div>
     </div>
@@ -13,22 +13,22 @@ export default {
     name: 'TecladoLetras',
     data() { 
         return {
-            letras: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "u", "v", "w", "x", "y", "z"],
-            visible: false,
+            Letras: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "u", "v", "w", "x", "y", "z"],
+            Visible: false,
         }
     }, methods: {
-        async revisar(eleccion) { 
-            this.$emit("evaluar", eleccion);
-            document.getElementById(eleccion).disabled = true;
-            document.getElementById(eleccion).style = 'background-color: #d0d0d0; color: #000;';
+        async revisar(Eleccion) { 
+            this.$emit("evaluar", Eleccion);
+            document.getElementById(Eleccion).disabled = true;
+            document.getElementById(Eleccion).style = 'background-color: #d0d0d0; color: #000;';
         },
         apagar() { 
-            const componentes = document.querySelectorAll('.boton_teclado');
-            componentes.forEach(element => {
-                element.style = 'background-color: #d0d0d0; color: #000;';
-                element.disabled = true;
+            const componentes = document.querySelectorAll('.botonTeclado');
+            componentes.forEach(Element => {
+                Element.style = 'background-color: #d0d0d0; color: #000;';
+                Element.disabled = true;
             });
-            this.visible = true;
+            this.Visible = true;
         },
         recargar: function () { 
             location.reload();
@@ -48,7 +48,7 @@ export default {
     align-items: center;
 }
 
-.boton_teclado {
+.botonTeclado {
     width: 9%;
     height: 50px;
     margin: 5px 9px;
@@ -59,7 +59,7 @@ export default {
     color: black;
 }
 
-.contenedor_reiniciar {
+.contenedorReiniciar {
     width: 100%;
 }
 .reiniciar{

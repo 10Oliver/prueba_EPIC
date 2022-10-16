@@ -1,7 +1,7 @@
 <template>
     <div class="ContenedorPalabraEscondida">
-        <span v-for="caracter in arreglo" :key="caracter.id" forceUpdate>
-            <p>{{ caracter }}</p></span>
+        <span v-for="Caracter in Arreglo" :key="Caracter.id" forceUpdate>
+            <p>{{ Caracter }}</p></span>
     </div>
 </template>
 
@@ -9,37 +9,37 @@
 import Swal from "sweetalert2";
 
 export default {
-    props: ["palabra"],
+    props: ["Palabra"],
     name: "PalabraEscondida",
     data() {
         return {
-            secreto: this.palabra[0],
+            Secreto: this.Palabra[0],
             ActualEleccion: null,
             visibilidad: false,
-            arreglo: this.palabra[1],
-            posicion: [],
-            intentos: 5,
+            Arreglo: this.Palabra[1],
+            Posicion: [],
+            Intentos: 5,
         };
     },
     methods: {
-        revisar(letra) {
+        revisar(Letra) {
             //Se verifica si la letra seleccionada se encuentra dentro del arreglo
-            let temporal = this.secreto.indexOf(letra);
+            let Temporal = this.Secreto.indexOf(Letra);
             //variable para verificar que si se encontró una coinicidencia
-            let estado = false;
+            let Estado = false;
             //Se van guardando
-            while (temporal != -1) {
-                estado = true;
-                this.posicion.push(temporal);
-                temporal = this.secreto.indexOf(letra, temporal + 1);
+            while (Temporal != -1) {
+                Estado = true;
+                this.Posicion.push(Temporal);
+                Temporal = this.Secreto.indexOf(Letra, Temporal + 1);
             }
             //Se cambian los asteriscos por la letra real si hubieron coincidencias
-            if (estado) {
-                this.posicion.forEach((element) => {
-                    this.arreglo[element] = this.secreto[element];
+            if (Estado) {
+                this.Posicion.forEach((Element) => {
+                    this.Arreglo[Element] = this.Secreto[Element];
                 });
                 //Se revisa si ya se ha completado la palabra
-                if (this.arreglo.join("") == this.secreto.join("")) {
+                if (this.Arreglo.join("") == this.Secreto.join("")) {
                     Swal.fire({
                         title: "¡Felicidades!",
                         text: "¡Has completado la palabra!",
@@ -49,23 +49,23 @@ export default {
                     this.$emit("cancelar");
                 }
             } else {
-                this.intentos--;
-                if (this.intentos <= 0) {
+                this.Intentos--;
+                if (this.Intentos <= 0) {
                     Swal.fire({
                         title: "Lo siento",
                         text: "¡Has perdido!",
                         allowOutsideClick: false,
                     });
                     //Se muestra la palabra
-                    for (let index = 0; index < this.secreto.length; index++) {
-                        this.arreglo[index] = this.secreto[index];
+                    for (let index = 0; index < this.Secreto.length; index++) {
+                        this.Arreglo[index] = this.Secreto[index];
                     }
                     //Se envia el método para apagar todo el teclado
                     this.$emit("cancelar");
                 } else {
                     Swal.fire({
                         title: "Estás equivocado",
-                        text: "Intentos restantes: " + this.intentos,
+                        text: "Intentos restantes: " + this.Intentos,
                         toast: true,
                         position: "top-end",
                         timer: 2000,
