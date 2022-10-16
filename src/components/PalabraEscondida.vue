@@ -1,8 +1,7 @@
 <template>
     <div class="ContenedorPalabraEscondida">
         <span v-for="caracter in arreglo" :key="caracter.id" forceUpdate>
-            <p>{{ caracter }}</p></span
-        >
+            <p>{{ caracter }}</p></span>
     </div>
 </template>
 
@@ -66,7 +65,7 @@ export default {
                 } else {
                     Swal.fire({
                         title: "Estás equivocado",
-                        text: "Intentos restantes" + this.intentos,
+                        text: "Intentos restantes: " + this.intentos,
                         toast: true,
                         position: "top-end",
                         timer: 2000,
@@ -87,7 +86,7 @@ export default {
 <style scoped>
 .ContenedorPalabraEscondida {
     width: 100%;
-    margin-top: 350px;
+    margin-top: 340px;
     height: auto;
     display: flex;
     justify-content: center;

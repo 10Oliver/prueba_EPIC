@@ -1,10 +1,8 @@
 <template>
     <div id="seleccion">
         <h3>Elige la opción para adivinar la palabra</h3>
-        <span
-            >Para empezar a jugar, debes de definir la palabra que tratarás de encontrar, para ello decide la opción que
-            más prefieras</span
-        >
+        <span >Para empezar a jugar, debes de definir la palabra que tratarás de encontrar, para ello decide la opción que
+            más prefieras</span>
         <div class="opciones">
             <button v-on:click="visible = !visible">Escribir la palabra</button>
             <button v-on:click="setData">¡Qué el destino decida!</button>
@@ -71,7 +69,7 @@ export default {
     height: auto;
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 button {
@@ -81,6 +79,20 @@ button {
     align-items: center;
     padding: 0px 20px;
     border-radius: 10px;
+}
+
+h3 {
+    font-size: 22pt;
+    margin: 10px;
+}
+
+span {    
+    font-size: 18pt;
+    margin: 5px 0px;
+}
+
+button {
+    font-size: 16pt;
 }
 
 .contenedorTeclado {
@@ -95,9 +107,10 @@ button {
 
 input {
     background-color: white;
-    border: 0.5px solid black;
+    border: 2px solid black !important;
     border-radius: 5px;
     width: 30%;
-    height: 25px;
+    height: 35px;
+    font-size: 16pt;
 }
 </style>

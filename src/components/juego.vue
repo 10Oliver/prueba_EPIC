@@ -11,8 +11,6 @@
             <div class="personaje pieza3"></div>
             <div class="personaje pieza4"></div>
             <div class="personaje pieza5"></div>
-
-            <span>{{ errores }}</span>
         </div>
     </div>
 </template>

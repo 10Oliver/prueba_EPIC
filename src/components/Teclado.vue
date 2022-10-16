@@ -20,12 +20,12 @@ export default {
         async revisar(eleccion) { 
             this.$emit("evaluar", eleccion);
             document.getElementById(eleccion).disabled = true;
-            document.getElementById(eleccion).style = 'background-color: #B40B4A;';
+            document.getElementById(eleccion).style = 'background-color: #d0d0d0; color: #000;';
         },
         apagar() { 
             const componentes = document.querySelectorAll('.boton_teclado');
             componentes.forEach(element => {
-                element.style = 'background-color: #B40B4A;';
+                element.style = 'background-color: #d0d0d0; color: #000;';
                 element.disabled = true;
             });
             this.visible = true;
@@ -53,10 +53,10 @@ export default {
     height: 50px;
     margin: 5px 9px;
     border-radius: 5px;
-    border: 0.5px solid black;
+    border: 1px solid black;
     font-size: 14pt;
-    background-color: #560D28;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 .contenedor_reiniciar {
