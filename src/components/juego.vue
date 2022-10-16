@@ -1,10 +1,17 @@
 <template>
     <div class="ContenedorPersonaje">
-        <div class="personaje">
+        <div class="Cpersonaje">
             <div class="linea base1"></div>
             <div class="linea base2"></div>
             <div class="linea base3"></div>
             <div class="linea base4"></div>
+            <div class="personaje pieza0"></div>
+            <div class="personaje pieza1"></div>
+            <div class="personaje pieza2"></div>
+            <div class="personaje pieza3"></div>
+            <div class="personaje pieza4"></div>
+            <div class="personaje pieza5"></div>
+
             <span>{{ errores }}</span>
         </div>
     </div>
@@ -17,19 +24,54 @@ export default {
     data() {
         return {
             errores: 0,
+            propiedades: {
+                'pieza1': [120, -80,315, 0],
+                'pieza2': [80, -110, 285, 45],
+                'pieza3': [80, -110, 345, -45],
+                'pieza4': [80, -18, 285, 45],
+                'pieza5': [80,-18,345,-45],
+            }
         };
     },
     methods: {
         fallido() {
             this.errores++;
+            let objeto = this.propiedades['pieza' + this.errores];
+            anime({
+                targets: ".pieza" + this.errores,
+                height: objeto[0],
+                translateY: objeto[1],
+                translateX: objeto[2],
+                rotate: objeto[3],
+                opacity: 1
+            });
         },
     },
     mounted() {
         anime({
+            targets: ".personaje",
+            translateX: 315,
+            translateY: -280,
+            delay: 1000
+        });
+
+        anime({
+            targets: ".pieza" + this.errores,
+            borderRadius: ["0%", "50%"],
+            width: 80,
+            height: 80,
+            translateX: 270,
+            translateY: -190,
+            backgroundColor: "rgba(255,0,0,0)",
+            border: 1,
+            opacity: 1,
+            delay: 1000
+        });
+        anime({
             targets: ".base1",
             width: 250,
             easing: "easeInOutQuad",
-            translateX: 0
+            translateX: 0,
         });
         anime({
             targets: ".base2",
@@ -39,12 +81,13 @@ export default {
             delay: 200,
         });
         anime({
-            targets: '.base3',
+            targets: ".base3",
             translateY: -280,
-            translateX: 320,
+            translateX: 315,
             height: 50,
-            width: 10
-        })
+            width: 10,
+            delay: 600
+        });
         anime({
             targets: ".base4",
             translateX: 120,
@@ -63,11 +106,12 @@ export default {
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: red;
+    background-color: black;
     width: 60%;
     margin-left: 20%;
 }
-.personaje {
+
+.Cpersonaje {
     margin-top: 350px;
     width: 500px;
     height: 320px;
@@ -86,11 +130,25 @@ export default {
     width: 10px;
     height: 10px;
     background-color: black;
+    border-radius: 5px;
+}
+.pieza0 {
+    border: 10px solid black;
+    width: 1px;
+    height: 1px;
+
 }
 
-.base2,
-.base3,
-.base4 {
-    background-color: red;
+.personaje {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 5px;
+    opacity: 0;
 }
 </style>

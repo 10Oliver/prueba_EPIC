@@ -19,7 +19,7 @@ export default {
             visibilidad: false,
             arreglo: this.palabra[1],
             posicion: [],
-            intentos: 6,
+            intentos: 5,
         };
     },
     methods: {

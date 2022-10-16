@@ -7,7 +7,7 @@
         >
         <div class="opciones">
             <button v-on:click="visible = !visible">Escribir la palabra</button>
-            <button>¡Qué el destino decida!</button>
+            <button v-on:click="setData">¡Qué el destino decida!</button>
         </div>
         <div class="contenedorTeclado" v-if="visible">
             <input type="text" v-model="palabra" />
@@ -37,6 +37,7 @@ export default {
                     text: 'No se permiten campos vacíos'
                 })
             } else { 
+                //Se revisa si se ha escogido una palabra
                 //La palabra se pasa a minusculas
                 this.palabra = this.palabra.toLowerCase();
                 this.$emit("retornar", this.palabra);
