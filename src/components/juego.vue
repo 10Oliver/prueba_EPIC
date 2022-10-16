@@ -1,12 +1,25 @@
 <template>
     <div class="ContenedorPersonaje">
-        <div class="personaje"></div>
+        <div class="personaje">
+            <span>{{errores}}</span>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     name: 'JuegoAhorcado',
+    data() { 
+        return {
+            errores: 0,
+        }
+    },
+    methods: {
+        fallido() {
+            this.errores++;
+            this.$forceUpdate();
+        }
+    }
 }
 </script>
 

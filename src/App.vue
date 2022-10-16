@@ -2,9 +2,9 @@
     <div id="app">
         <h1>Juego de ahorcado</h1>
         <SeleccionPalabra ref="seleccion" v-if="estado" v-on:retornar="getData" />
-        <Juego v-if="!estado" />
-         <PalabraEscondida ref="escondida"  v-bind:palabra="palabra" v-if="!estado"/>
-        <teclado v-if="!estado" v-on:evaluar="getIntento"/>
+        <Juego v-if="!estado" ref="juego" />
+         <PalabraEscondida ref="escondida"  v-bind:palabra="palabra" v-if="!estado" v-on:cancelar="apagar" v-on:fallar="dibujo"/>
+        <teclado ref="teclado" v-if="!estado" v-on:evaluar="getIntento"/>
        
     </div>
 </template>
@@ -51,6 +51,12 @@ export default {
         },
         verificar: function () { 
             this.$emit('verificar', this.eleccion);
+        },
+        apagar: function () {
+            this.$refs.teclado.apagar();
+        },
+        dibujo: function () { 
+            this.$refs.juego.fallido();
         }
     },
 };
