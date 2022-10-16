@@ -87,7 +87,7 @@ export default {
 <style scoped>
 .ContenedorPalabraEscondida {
     width: 100%;
-
+    margin-top: 350px;
     height: auto;
     display: flex;
     justify-content: center;

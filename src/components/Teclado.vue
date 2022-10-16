@@ -39,7 +39,6 @@ export default {
 
 <style scoped>
 .contenedor {
-    margin-top: 25px;
     width: 84%;
     margin-left: 8%;
     height: auto;
@@ -52,7 +51,7 @@ export default {
 .boton_teclado {
     width: 9%;
     height: 50px;
-    margin: 9px;
+    margin: 5px 9px;
     border-radius: 5px;
     border: 0.5px solid black;
     font-size: 14pt;
@@ -67,6 +66,6 @@ export default {
     padding: 5px 15px;
     margin: 10px;
     border-radius: 10px;
-    font-size: 18pt;
+    font-size: 16pt;
 }
 </style>
