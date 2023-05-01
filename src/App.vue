@@ -34,7 +34,7 @@ export default {
             Intentos: 6,
             Eleccion: null,
             LongitudArreglo: null,
-            ArregloLineas: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            ArregloLineas: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
         };
     },
     components: {
@@ -50,7 +50,7 @@ export default {
             let PalabraSecreta = PalabraR.split(""), Arreglo = [];
             //Se crea un arreglo con la longitud de la palabra
             for (let index = 0; index < PalabraR.split("").length; index++) {
-                Arreglo.push("*");
+                PalabraSecreta[index] == " " ? Arreglo.push(PalabraSecreta[index]) : Arreglo.push("*");
             }
             /**
              * this.palabra es un arreglo generar para guardar ambos valores

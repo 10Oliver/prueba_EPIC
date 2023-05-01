@@ -1,7 +1,8 @@
 <template>
     <div class="ContenedorPalabraEscondida">
         <span v-for="Caracter in Arreglo" :key="Caracter.id" forceUpdate>
-            <p>{{ Caracter }}</p></span>
+            <p>{{ Caracter }}</p>
+        </span>
     </div>
 </template>
 

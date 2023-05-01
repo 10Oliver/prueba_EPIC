@@ -55,7 +55,7 @@ export default {
                         .then((request) => request.json())
                         .then((response) => {
                             //Se obtiene la palabra
-                            Busqueda = response[0].word.toLowerCase();
+                            Busqueda = response[0].word.toUpperCase();
                             //Se envía para evaluarla
                             this.$emit("retornar", Busqueda);
                         })
@@ -75,7 +75,7 @@ export default {
                         });
                     } else { 
                         //Si no está vacío, no es nulo y tiene más de una letra se guarda y se envía
-                        this.Palabra = this.Palabra.toLowerCase();
+                        this.Palabra = this.Palabra.toUpperCase();
                         this.$emit("retornar", this.Palabra);
                     }
                 }
